@@ -29,7 +29,7 @@ class MeetupController {
       order: ['date'],
       attributes: ['id', 'title', 'description', 'location', 'date'],
       include: [
-        { model: User },
+        { model: User, as: 'user_meetup' },
         {
           model: File,
           as: 'banner',
