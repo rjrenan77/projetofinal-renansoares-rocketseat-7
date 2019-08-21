@@ -116,6 +116,16 @@ class MeetupController {
     await Meetup.destroy({ where: { id: req.params.id } });
     return res.json();
   }
+
+  async indexOne(req, res) {
+    const meetup = await Meetup.findByPk(req.params.id);
+
+    if (meetup.user_id !== req.userId) {
+      return res.status(401).json({ error: 'You dont have permission to cancel this meetup' });
+    }
+
+    return res.json(meetup);
+  }
 }
 
 export default new MeetupController();

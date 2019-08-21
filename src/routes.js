@@ -20,6 +20,8 @@ routes.use(authMiddleware);
 
 routes.put('/users', UserController.update);
 
+routes.get('/meetups/:id', MeetupController.indexOne);
+
 routes.get('/meetups', MeetupController.index);
 routes.put('/meetups', MeetupController.update);
 routes.post('/meetups', MeetupController.store);
