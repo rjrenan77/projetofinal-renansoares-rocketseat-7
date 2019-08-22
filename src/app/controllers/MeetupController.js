@@ -29,7 +29,7 @@ class MeetupController {
       order: ['date'],
       attributes: ['id', 'title', 'description', 'location', 'date'],
       include: [
-        { model: User, as: 'user_meetup' },
+        { model: User, as: 'user_meetup', attributes: ['id', 'name', 'email'] },
         {
           model: File,
           as: 'banner',
@@ -118,7 +118,16 @@ class MeetupController {
   }
 
   async indexOne(req, res) {
-    const meetup = await Meetup.findByPk(req.params.id);
+    const meetup = await Meetup.findByPk(req.params.id, {
+      include: [
+        { model: User, as: 'user_meetup', attributes: ['id', 'name', 'email'] },
+        {
+          model: File,
+          as: 'banner',
+          attributes: ['id', 'name', 'path', 'url'],
+        },
+      ],
+    });
 
     if (meetup.user_id !== req.userId) {
       return res.status(401).json({ error: 'You dont have permission to cancel this meetup' });
