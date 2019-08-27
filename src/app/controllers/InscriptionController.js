@@ -40,6 +40,8 @@ class InscriptionController {
       ],
     });
 
+    console.log(meetup);
+
     const user = await User.findByPk(req.userId);
 
     if (isBefore(meetup.date, new Date())) {

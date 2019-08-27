@@ -8,14 +8,14 @@ module.exports = {
       primaryKey: true,
     },
     user_id: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.INTEGER(11),
       references: { model: 'users', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',
       allowNull: false,
     },
     meetup_id: {
-      type: Sequelize.INTEGER,
+      type: Sequelize.INTEGER(11),
       references: { model: 'meetups', key: 'id' },
       onUpdate: 'CASCADE',
       onDelete: 'CASCADE',

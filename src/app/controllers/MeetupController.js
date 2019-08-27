@@ -49,7 +49,6 @@ class MeetupController {
       description: Yup.string().required(),
       location: Yup.string().required(),
       date: Yup.date().required(),
-      file_id: Yup.string().required(),
       user_id: Yup.string().required(),
     });
 
