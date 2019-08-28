@@ -13,6 +13,7 @@ class InscriptionController {
         user_id: req.userId,
       },
       include: [
+        { model: User, as: 'user_meetup', attributes: ['id', 'name'] },
         {
           model: Meetup,
           where: {
