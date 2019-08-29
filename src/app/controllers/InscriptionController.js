@@ -85,6 +85,19 @@ class InscriptionController {
 
     return res.json(inscription);
   }
-}
 
+  async delete(req, res) {
+    const meetup = await Inscription.findByPk(req.params.id);
+
+    if (meetup.user_id !== req.userId) {
+      return res
+        .status(401)
+        .json({ error: 'You dont have permission to cancel this meetup' });
+    }
+
+    // deleting meetup
+    await Inscription.destroy({ where: { id: req.params.id } });
+    return res.json();
+  }
+}
 export default new InscriptionController();
